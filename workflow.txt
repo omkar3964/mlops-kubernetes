@@ -1,0 +1,36 @@
+1. Build the app(any) and test in local
+2. Start dockerhub and docker-desktop (sign-in to both)
+3. Prepare the dockerfile in the project
+
+4. Create the Docker image and test it:
+    >> docker build -t kubernetes-test-app:latest .
+    >> docket images
+    >> docker run -p 5000:5000 kubernetes-test-app: latest
+5. Create deployment.Yaml
+6. Install Minikube
+    >> Go to: https://minikube. sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2F stable%2F .exe+download
+    >> .exe download -> powershell command -> Run via powershell as admin -> restart terminal (reboot)
+
+    >> minikube start / minikube start --embed-certs
+
+11 You might face possible error - “" ! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+* To pull new external images, you may need to configure a proxy: https://minikube. sigs.k8s. io/docs/reference/networking/proxy/ “*
+
+Potential sol:
+> If proxy is being used, set proxy for minikube: minikube start --docker-env HTTP_PROXY=http: //your-proxy:port --docker-env HTTPS_PROXY=https:: //your-proxy:port
+> If no proxy being used, unset the below:
+
+unset HTTP_PROXY
+
+unset HTTPS_PROXY
+
+unset NO_PROXY
+
+> Test connectivity to registry.k8s.io: ‘nslookup registry.k8s.io"
+Server: dlinkrouter.local
+
+Address: 192.168.0.1
+
+Non-authoritative answer
+registry.k8s.io
+
