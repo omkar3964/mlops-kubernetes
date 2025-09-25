@@ -11,26 +11,63 @@
     >> Go to: https://minikube. sigs.k8s.io/docs/start/?arch=%2Fwindows%2Fx86-64%2F stable%2F .exe+download
     >> .exe download -> powershell command -> Run via powershell as admin -> restart terminal (reboot)
 
-    >> minikube start / minikube start --embed-certs
+    >> minikube start  / minikube start --embed-certs
 
-11 You might face possible error - “" ! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
-* To pull new external images, you may need to configure a proxy: https://minikube. sigs.k8s. io/docs/reference/networking/proxy/ “*
+!! You might face possible error - “" ! Failing to connect to https://registry.k8s.io/ from both inside the minikube container and host machine
+                                    * To pull new external images, you may need to configure a proxy: https://minikube. sigs.k8s. io/docs/reference/networking/proxy/ “*
 
 Potential sol:
 > If proxy is being used, set proxy for minikube: minikube start --docker-env HTTP_PROXY=http: //your-proxy:port --docker-env HTTPS_PROXY=https:: //your-proxy:port
 > If no proxy being used, unset the below:
-
 unset HTTP_PROXY
-
 unset HTTPS_PROXY
-
 unset NO_PROXY
 
 > Test connectivity to registry.k8s.io: ‘nslookup registry.k8s.io"
 Server: dlinkrouter.local
-
 Address: 192.168.0.1
 
-Non-authoritative answer
-registry.k8s.io
+Non-authoritative answer:
+Name: registry.k8s.io
+Addresses: 2600:1901:0:bbc4::
+        34.96.108.209
 
+> minikube stop
+> minikube delete --all
+
+
+>> minikube status
+
+
+>> kubectl get all -A
+>> kubectl get pods -A
+>> kubectl get nodes -A
+
+How to add new node?
+>> minikube start--nodes-2/minikube start--nodes 2-embed-certs.
+
+>> minikube image list
+>> docker images
+>> minikube image load kubernetes-test-app:latest
+
+>> kubectl apply -f deployment.yaml (from project directory)
+>> kubectl delete deployment kubernetes-test-app (conditional)
+
+>> kubectl get pods -A
+>> kubectl get nodes -A
+>> kubectl delete pod <pod-name/id>
+>> minikube service kubernetes-test-app
+>> minikube dashboard
+
+>> kubectl get endpoints
+>> Kubectl get service
+
+**Load Balancing **
+>> kubectl get pods
+>> kubectl logs -f <pod-id>
+>> Postman -> collection > Runs -> Performance -> Run Performance Test -> Performance (Fixed 10users -> 1min)
+>> minikube stop
+
+for status: ImagePullBackOff issue
+>> docker tag kubernetes-test-app:latest vikash95/kubernetes-test-app:latest
+>> docker push vikash95/kubernetes-test-app:latest

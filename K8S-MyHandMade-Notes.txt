@@ -60,7 +60,7 @@ This separation makes it easy to scale just the **Model Serving Service** when t
 
 **Real-Life Analogy for Microservices**: Think of microservices as a food court
 
-- Each food stall specializes in one type of cuisine (e.g., burgers, pizza, coffee).  
+- Each food stall specializes in one type of cuisine (e.g., burgers, pizza, coffee).  x   
 - They operate independently, so if one stall runs out of ingredients (or needs upgrades), it doesn’t affect the others.
 - Customers (users) can pick and choose what they want, and the food court manager (Kubernetes) ensures all stalls have the resources (electricity, water) they need to function.
 
